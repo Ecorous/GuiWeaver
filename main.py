@@ -68,7 +68,7 @@ def main():
                        [sg.Button('Create modpack')],
                        [sg.Button('Open modpack')],
                        [sg.Button('Download BepInEx')],
-                       #[sg.Button('Restore Game')],
+                       [sg.Button('Restore Game')],
                        [sg.Button('Exit')] 
                        ]
     sg.theme('DarkGrey9')
@@ -79,29 +79,32 @@ def main():
         main_menu_event, main_menu_values = main_menu_window.read()
         if main_menu_event == sg.WIN_CLOSED or main_menu_event == 'Exit': # if user closes window or clicks cancel
             break
-#       if main_menu_event == 'Restore Game':
-#            if platform.system() == 'Windows':
-#                 default_path = '"C:\Program Files (x86)\Steam\steamapps\common\Spiderheck Demo\BepInEx\plugins"'
-#            restore_game_layout = [
-#                                 [sg.Text('Enter the path to your game (if not sure use the default):')],
-#                                 [sg.InputText(default_path)],
-#                                 [sg.Button('Restore'), sg.Button('Cancel')]
-#                                 ]
-#            restore_game_window = sg.Window('Enter game path', restore_game_layout)
-#            while True:
-#                    restore_game_event, restore_game_values = restore_game_window.read()
-#                    if restore_game_event == 'Restore':
-#                        game_path = restore_game_values[0]
-#                        if platform.system() == 'Windows':
-#                            os.system(f'powershell -c "rm \"{game_path}\"/*"')
-#                        else:
-#                            os.system(f'rm {game_path}/*')
-#                        sg.popup('Restored!')
-#                        restore_game_window.close()
-#                        break
-#                    if restore_game_event == sg.WIN_CLOSED or restore_game_event == 'Cancel': # if user closes window or clicks cancel
-#                        restore_game_window.close()
-#                        break*/
+        if main_menu_event == 'Restore Game':
+            if platform.system() == 'Windows':
+                 default_path = 'C:\Program Files (x86)\Steam\steamapps\common\Spiderheck Demo\BepInEx\plugins'
+            restore_game_layout = [
+                                 [sg.Text('Enter the path to your game (if not sure use the default):')],
+                                 [sg.InputText(default_path)],
+                                 [sg.Button('Restore'), sg.Button('Cancel')]
+                                 ]
+            restore_game_window = sg.Window('Enter game path', restore_game_layout)
+            while True:
+                    restore_game_event, restore_game_values = restore_game_window.read()
+                    if restore_game_event == 'Restore':
+                        game_path = restore_game_values[0]
+                        if os.path.isfile(f'{game_path}/NoGravity.dll'):
+                            os.remove(f'{game_path}/NoGravity.dll')
+                        if os.path.isfile(f'{game_path}\TooManyExplosions.dll'):
+                            os.remove(f'{game_path}\TooManyExplosions.dll')
+                        if os.path.isfile(f'{game_path}\HarderHeck.dll'):
+                            os.remove(f'{game_path}\HarderHeck.dll')
+                        #os.remove(f'{game_path}\*')
+                        sg.popup('Restored!')
+                        restore_game_window.close()
+                        break
+                    if restore_game_event == sg.WIN_CLOSED or restore_game_event == 'Cancel': # if user closes window or clicks cancel
+                        restore_game_window.close()
+                        break
 
 
         if main_menu_event == 'Download BepInEx':
@@ -161,7 +164,6 @@ def main():
                             if launch_game_event == 'Launch':
                                 game_path = launch_game_values[0]
                                 plugins_path = f'{game_path}BepInEx\plugins'
-                                logger.dbg(f'copy "{pack_root}/*" {plugins_path}')
                                 if platform.system() == 'Windows':
                                     #os.system(f'copy "{packs_root}/{pack_name}/NoGravity.dll" {root}')
                                     if os.path.isfile(f'{packs_root}/{pack_name}/NoGravity.dll'):
