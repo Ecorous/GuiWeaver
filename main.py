@@ -237,13 +237,13 @@ def main():
                     if too_many_explosions_enabled:
                         logger.dbg('Enabling TooManyExplosions')
                         if platform.system() == 'Windows':
-                            os.system(f'powershell -c "cp {plugins_root}/NoGravity.dll" .')
+                            os.system(f'powershell -c "cp {plugins_root}/TooManyExplosions.dll" .')
                         else:
                             os.system(f'cp "{plugins_root}/{too_many_explosions[1]}" .')
                     if harderheck_enabled:
                         logger.dbg('Enabling HarderHeck')
                         if platform.system() == 'Windows':
-                            os.system(f'powershell -c "cp {plugins_root}/NoGravity.dll" .')
+                            os.system(f'powershell -c "cp {plugins_root}/HarderHeck.Mod.dll" .')
                         else:
                             os.system(f'cp "{plugins_root}/{harderheck[1]}" .')
                     sg.popup('Done! Please use Open Modpack on the front page to edit this modpack')
