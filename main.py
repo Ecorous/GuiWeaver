@@ -96,8 +96,8 @@ def main():
                             os.remove(f'{game_path}/NoGravity.dll')
                         if os.path.isfile(f'{game_path}\TooManyExplosions.dll'):
                             os.remove(f'{game_path}\TooManyExplosions.dll')
-                        if os.path.isfile(f'{game_path}\HarderHeck.dll'):
-                            os.remove(f'{game_path}\HarderHeck.dll')
+                        if os.path.isfile(f'{game_path}\HarderHeck.Mod.dll'):
+                            os.remove(f'{game_path}\HarderHeck.Mod.dll')
                         #os.remove(f'{game_path}\*')
                         sg.popup('Restored!')
                         restore_game_window.close()
@@ -165,15 +165,12 @@ def main():
                                 game_path = launch_game_values[0]
                                 plugins_path = f'{game_path}BepInEx\plugins'
                                 if platform.system() == 'Windows':
-                                    #os.system(f'copy "{packs_root}/{pack_name}/NoGravity.dll" {root}')
                                     if os.path.isfile(f'{packs_root}/{pack_name}/NoGravity.dll'):
                                         shutil.copyfile(f'{packs_root}/{pack_name}/NoGravity.dll', f'{plugins_path}/NoGravity.dll')
-                                    #os.system(f'copy "{pack_root}/{pack_name}/TooManyExplosions.dll" {root}')
                                     if os.path.isfile(f'{packs_root}/{pack_name}/TooManyExplosions.dll'):
                                         shutil.copyfile(f'{packs_root}/{pack_name}/TooManyExplosions.dll', f'{plugins_path}/TooManyExplosions.dll')
-                                    #os.system(f'copy "{pack_root}/{pack_name}/HarderHeck.dll" {root}')
-                                    if os.path.isfile(f'{packs_root}/{pack_name}/HarderHeck.dll'):
-                                        shutil.copyfile(f'{packs_root}/{pack_name}/HarderHeck.dll', f'{plugins_path}/HarderHeck.dll')
+                                    if os.path.isfile(f'{packs_root}/{pack_name}/HarderHeck.Mod.dll'):
+                                        shutil.copyfile(f'{packs_root}/{pack_name}/HarderHeck.Mod.dll', f'{plugins_path}/HarderHeck.Mod.dll')
 
                                     
                                 else:
@@ -195,11 +192,11 @@ def main():
                                     else:
                                         os.system(f'cp "{plugins_root}/TooManyExplosions.dll" .')
                             if pack_edit_values[2]:
-                                if not os.path.isfile('./HarderHeck.dll'):
+                                if not os.path.isfile('./HarderHeck.Mod.dll'):
                                     if platform.system() == 'Windows':
-                                        os.system(f'powershell -c "cp {plugins_root}/HarderHeck.dll" .')
+                                        os.system(f'powershell -c "cp {plugins_root}/HarderHeck.Mod.dll" .')
                                     else:
-                                        os.system(f'cp "{plugins_root}/HarderHeck.dll" .')
+                                        os.system(f'cp "{plugins_root}/HarderHeck.Mod.dll" .')
                             sg.popup('Done! Your pack has been edited')
 
                                        
