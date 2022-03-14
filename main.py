@@ -171,9 +171,8 @@ def main():
                                         shutil.copyfile(f'{packs_root}/{pack_name}/TooManyExplosions.dll', f'{plugins_path}/TooManyExplosions.dll')
                                     if os.path.isfile(f'{packs_root}/{pack_name}/HarderHeck.Mod.dll'):
                                         shutil.copyfile(f'{packs_root}/{pack_name}/HarderHeck.Mod.dll', f'{plugins_path}/HarderHeck.Mod.dll')
-                                sg.popup("Done! You can now launch the game normally")
+                                    sg.popup("Done! You can now launch the game normally")
 
-                                    
                                 else:
                                     os.system(f'cp {pack_root}/* {plugins_path}')
                                     sg.popup("Done! You can now launch the game normally")
